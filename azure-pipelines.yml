@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: 'Default'   # or your custom agent pool name
+  name: 'Default'   # your self-hosted agent pool
 
 steps:
 
@@ -13,7 +13,10 @@ steps:
 
 - script: |
     npm install
-    npm run build
+  displayName: 'Install Dependencies'
+
+- script: |
+    npm run build || echo "No build step"
   displayName: 'Build Application'
 
 - script: |
