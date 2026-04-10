@@ -2,49 +2,21 @@ trigger:
 - main
 
 pool:
-  name: 'Default'   # self-hosted Windows agent
+  name: 'Default'
 
 steps:
-
 - checkout: self
 
 - task: UseNode@1
   inputs:
     version: '16.x'
-  displayName: 'Install Node.js'
 
-# 🔍 Debug to verify files
-- script: |
-    echo Current Directory:
-    cd
-    echo Files:
-    dir
-  displayName: 'Check Repo Files'
-
-# 📦 Install dependencies (inside folder where package.json exists)
 - script: |
     cd my-app
     npm install
-  displayName: 'Install Dependencies'
+  displayName: Install
 
-# 🏗 Build (optional)
 - script: |
     cd my-app
-    npm run build || echo "No build step"
-  displayName: 'Build Application'
-
-# 🧪 Test
-- script: |
-    echo "Running Tests"
-  displayName: 'Test Application'
-
-# 🚀 Run app
-- script: |
-    cd my-app
-    node app.js
-  displayName: 'Run App'
-
-# 🚀 Deploy (dummy)
-- script: |
-    echo "Deploying App"
-  displayName: 'Deploy Step'
+    npm start
+  displayName: Run
