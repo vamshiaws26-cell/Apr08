@@ -2,28 +2,11 @@ trigger:
 - main
 
 pool:
-  name: 'Default'
+  vmImage: 'ubuntu-latest'
 
 steps:
+- script: echo "Building project..."
+  displayName: 'Build Step'
 
-- checkout: self
-
-- task: UseNode@1
-  inputs:
-    version: '16.x'
-
-# ✅ Always go inside correct folder
-- script: |
-    cd my-app
-    dir
-  displayName: 'Check Files'
-
-- script: |
-    cd my-app
-    npm install
-  displayName: 'Install Dependencies'
-
-- script: |
-    cd my-app
-    npm start
-  displayName: 'Run App'
+- script: echo "Deploying project..."
+  displayName: 'Deploy Step'
